@@ -14,3 +14,8 @@ The developer identity is aimed to resolve the issue of developers, as they need
 ******************************************Multiple dapps can be built on top of this technology, like verifiable resumes, web3 fiverr, etc.******************************************
 
 ![Sadaiv CI structure (1).jpg](./images/213.jpg)
+
+
+The developer ID is built on top of technologies like Polygon ID and Flutter with core feature being standardisation of schema structures.
+
+You can find the standard schemas here: https://github.com/sadaiv-ci/devid-schemas/
