@@ -45,6 +45,12 @@ dependencies:
   provider: ^6.0.5
   flutter_secure_storage: ^8.0.0
   persistent_bottom_nav_bar: ^5.0.2
+  intl: ^0.18.0
+  country_code: ^1.0.0
+  country_list: ^0.0.5
+  webview_flutter: ^4.0.7
+  barcode_scan2: ^4.2.4
+  flutter_dotenv: ^5.0.2
 
 dev_dependencies:
   flutter_test:
@@ -69,8 +75,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - .env
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

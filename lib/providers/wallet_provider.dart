@@ -1,13 +1,23 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:polygonid_flutter_sdk/credential/domain/entities/claim_entity.dart';
 import 'package:polygonid_flutter_sdk/iden3comm/domain/entities/iden3_message_entity.dart';
+import 'package:polygonid_flutter_sdk/iden3comm/domain/entities/request/auth/proof_scope_request.dart';
 import 'package:polygonid_flutter_sdk/iden3comm/domain/entities/request/offer/offer_iden3_message_entity.dart';
 import 'package:polygonid_flutter_sdk/identity/domain/entities/identity_entity.dart';
+import 'package:polygonid_flutter_sdk/proof/domain/entities/circuit_data_entity.dart';
+import 'package:polygonid_flutter_sdk/proof/domain/entities/jwz/jwz_proof.dart';
 import 'package:polygonid_flutter_sdk/sdk/polygon_id_sdk.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sadaivid/config/blockchain_resources.dart';
 import 'package:sadaivid/config/storage_keys.dart';
+import 'package:sadaivid/models/mappers/claim_model_type_mapper.dart';
+import 'package:sadaivid/models/mappers/proof_model_type_mapper.dart';
+
+import '../models/claim_model.dart';
+import '../models/mappers/claim_model_mapper.dart';
+import '../models/mappers/claim_model_state_mapper.dart';
 
 class WalletProvider extends ChangeNotifier {
   final storage = FlutterSecureStorage();
@@ -54,18 +64,56 @@ class WalletProvider extends ChangeNotifier {
     return message;
   }
 
-  Future<void> authenticate(Iden3MessageEntity iden3Message) async {
-    if (!isReady) return;
+  Future<List<ClaimModel>> getAllClaims() async {
+    if (!isReady) return [];
 
     String didIdentifier = await sdk.identity.getDidIdentifier(
         privateKey: privateKey!,
         blockchain: BlockchainResources.blockchain,
         network: BlockchainResources.network);
 
-    // final response = await sdk.credential.fetchAndSaveClaims(
-    //     message: iden3Message, did: did!, privateKey: privateKey!);
-    await sdk.iden3comm.authenticate(
-        did: didIdentifier, message: iden3Message, privateKey: privateKey!);
-    // print(response);
+    final claims = await sdk.credential
+        .getClaims(did: didIdentifier, privateKey: privateKey!);
+    final mapper =
+        ClaimModelMapper(ClaimModelStateMapper(), ProofModelTypeMapper());
+    List<ClaimModel> claimModelList =
+        claims.map((claimEntity) => mapper.mapFrom(claimEntity)).toList();
+    return claimModelList;
+  }
+
+  Future<bool> fetchAndSaveClaims(Iden3MessageEntity iden3Message) async {
+    if (!isReady) return false;
+
+    String didIdentifier = await sdk.identity.getDidIdentifier(
+        privateKey: privateKey!,
+        blockchain: BlockchainResources.blockchain,
+        network: BlockchainResources.network);
+    try {
+      final response = await sdk.iden3comm.fetchAndSaveClaims(
+          message: iden3Message, did: didIdentifier, privateKey: privateKey!);
+      print(response.first);
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  Future<JWZBaseProof?> generateProof(
+      ClaimEntity claimEntity,
+      CircuitDataEntity circuitDataEntity,
+      ProofScopeRequest proofScopeRequest) async {
+    if (!isReady) return null;
+
+    String didIdentifier = await sdk.identity.getDidIdentifier(
+        privateKey: privateKey!,
+        blockchain: BlockchainResources.blockchain,
+        network: BlockchainResources.network);
+    final proof = await sdk.proof.prove(
+        did: didIdentifier,
+        claim: claimEntity,
+        circuitData: circuitDataEntity,
+        request: proofScopeRequest);
+    return proof.proof;
   }
 }

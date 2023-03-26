@@ -66,45 +66,43 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image(
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                              height: 200,
-                              image: NetworkImage(
-                                  'https://images.cointelegraph.com/cdn-cgi/image/format=auto,onerror=redirect,quality=90,width=717/https://s3.cointelegraph.com/uploads/2023-03/ffdfc67d-89a5-41d1-949f-3f42df4c5827.jpg'),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image(
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: 200,
+                            image: NetworkImage(
+                                'https://images.cointelegraph.com/cdn-cgi/image/format=auto,onerror=redirect,quality=90,width=717/https://s3.cointelegraph.com/uploads/2023-03/ffdfc67d-89a5-41d1-949f-3f42df4c5827.jpg'),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            'Snoop Dogg revealed as co-founder of Web3-powered livestream platform',
+                            textAlign: TextAlign.justify,
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
                             ),
-                            SizedBox(height: 10),
-                            Text(
-                              'Snoop Dogg revealed as co-founder of Web3-powered livestream platform',
+                          ),
+                          SizedBox(height: 10),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 8, horizontal: 16),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).accentColor,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Text(
+                              'News ✨',
                               textAlign: TextAlign.justify,
                               style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                color: Colors.white,
                               ),
                             ),
-                            SizedBox(height: 10),
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 8, horizontal: 16),
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).accentColor,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Text(
-                                'News ✨',
-                                textAlign: TextAlign.justify,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:polygonid_flutter_sdk/common/domain/entities/env_entity.dart';
 import 'package:provider/provider.dart';
@@ -11,20 +12,20 @@ import 'package:sadaivid/screens/claims.dart';
 import 'package:sadaivid/screens/home.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:polygonid_flutter_sdk/sdk/polygon_id_sdk.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
 
   await PolygonIdSdk.init(
       env: EnvEntity(
     blockchain: 'polygon',
     network: 'mumbai',
-    web3Url:
-        'https://polygon-mumbai.g.alchemy.com/v2/dwquSdMnSF6C8wTuFcBkT6fMbNotN-sL',
-    web3RdpUrl:
-        'wss://polygon-mumbai.g.alchemy.com/v2/dwquSdMnSF6C8wTuFcBkT6fMbNotN-sL',
-    web3ApiKey: 'dwquSdMnSF6C8wTuFcBkT6fMbNotN-sL',
-    idStateContract: '0x453A1BC32122E39A8398ec6288783389730807a5',
+    web3Url: dotenv.env['web3Url'] ?? '',
+    web3RdpUrl: dotenv.env['web3RdpUrl'] ?? '',
+    web3ApiKey: dotenv.env['web3ApiKey'] ?? '',
+    idStateContract: '0x134B1BE34911E39A8397ec6289782989729807a4',
     pushUrl: 'https://push.service.io/api/v1',
   ));
   await Firebase.initializeApp();
@@ -85,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final sdk = PolygonIdSdk.I;
     final stream = await sdk.proof.initCircuitsDownloadAndGetInfoStream;
     stream.listen((event) {
-      print(event);
+      print(event.completed);
     });
   }
 
@@ -104,7 +105,13 @@ class _MyHomePageState extends State<MyHomePage> {
         HomePage(),
         ClaimsPage(),
         Container(),
-        Container(),
+        WebViewWidget(
+          controller: WebViewController()
+            ..setJavaScriptMode(JavaScriptMode.unrestricted)
+            ..setBackgroundColor(const Color(0x00000000))
+            ..loadRequest(
+                Uri.parse('https://sadiav-profile.vercel.app/36601970')),
+        ),
       ];
     }
 
