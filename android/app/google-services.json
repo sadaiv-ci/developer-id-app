@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "158878288405",
+    "project_id": "sadaivci-41e58",
+    "storage_bucket": "sadaivci-41e58.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:158878288405:android:f728dbc360d0aa56e0dc1c",
+        "android_client_info": {
+          "package_name": "com.example.sadaivid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "158878288405-q03foas9jv5bovgtdv1l96qnt504ua9h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ3eL7m0URNOJt2XPZM0ONvBGP7YN7W9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "158878288405-33v2hr74u3heb0mll1bifmb36tsoo04b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
