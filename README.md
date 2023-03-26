@@ -1,16 +1,16 @@
-# sadaivid
+# Developer ID App
 
-A new Flutter project.
+Sadaiv ID is a developer Identity app designed to resolve developer's issue of sharing proof of work to employeers, friends and building reputation on-chain while being anonymous.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+### **********************Building an on-chain privacy-first verifiable self-soverign developer identity.**********************
 
-A few resources to get you started if this is your first Flutter project:
+### **********************Developers are the core part of web3 ecosystem.**********************
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+The developer identity is aimed to resolve the issue of developers, as they need to provide their proof of work manually to get jobs, scholarships, opportunities and helping them get a clear reputation metric by collecting their contributions from different platform to blockchain. 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Dev Id img.jpg](./images/131.jpg)
+
+******************************************Multiple dapps can be built on top of this technology, like verifiable resumes, web3 fiverr, etc.******************************************
+
+![Sadaiv CI structure (1).jpg](./images/213.jpg)

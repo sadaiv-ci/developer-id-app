@@ -1,10 +1,8 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:polygonid_flutter_sdk/credential/domain/entities/claim_entity.dart';
 import 'package:polygonid_flutter_sdk/iden3comm/domain/entities/iden3_message_entity.dart';
 import 'package:polygonid_flutter_sdk/iden3comm/domain/entities/request/auth/proof_scope_request.dart';
-import 'package:polygonid_flutter_sdk/iden3comm/domain/entities/request/offer/offer_iden3_message_entity.dart';
 import 'package:polygonid_flutter_sdk/identity/domain/entities/identity_entity.dart';
 import 'package:polygonid_flutter_sdk/proof/domain/entities/circuit_data_entity.dart';
 import 'package:polygonid_flutter_sdk/proof/domain/entities/jwz/jwz_proof.dart';
@@ -12,7 +10,6 @@ import 'package:polygonid_flutter_sdk/sdk/polygon_id_sdk.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sadaivid/config/blockchain_resources.dart';
 import 'package:sadaivid/config/storage_keys.dart';
-import 'package:sadaivid/models/mappers/claim_model_type_mapper.dart';
 import 'package:sadaivid/models/mappers/proof_model_type_mapper.dart';
 
 import '../models/claim_model.dart';
